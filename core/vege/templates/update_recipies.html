@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="container mt-5">
+    <!-- method="post" is used to send data from front end to backend -->
+     <!-- enctype="multipart/form-data" is put here so that image files can be uploaded -->
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+        {%csrf_token %}
+        <!-- csrf %csrf_token checks if request is been sent from same server or not -->
+        <h2>Update Receipe</h2>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Receipe Name</label>
+          <input name="recipie_name" value="{{recipie.recipie_name}}" required type="text" class="form-control">
+          <!-- name is given for each input, and name should be same as the variable name in models.py -->
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label" >Description</label>
+          <textarea  name="recipie_description" class="form-control" required>{{recipie.recipie_description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Image</label>
+            <input name="recipie_image" type="file" class="form-control">
+          </div>
+        <button type="submit" class="btn btn-success">Update Add</button>
+      </form>
+      
+</div>
+
+{% endblock %}
